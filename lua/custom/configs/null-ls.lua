@@ -1,16 +1,11 @@
 local null_ls = require "null-ls"
 
-local formatting = null_ls.builtins.formatting
-local lint = null_ls.builtins.diagnostics
-
-local sources = {
-  formatting.prettier,
-  formatting.stylua,
-
-  lint.shellcheck,
-}
-
-null_ls.setup {
+null_ls.setup({
   debug = true,
-  sources = sources,
-}
+  sources = {
+      null_ls.builtins.formatting.stylua,
+      null_ls.builtins.diagnostics.eslint,
+      null_ls.builtins.diagnostics.shellcheck,
+      null_ls.builtins.completion.spell,
+  },
+})
